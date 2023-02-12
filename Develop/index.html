@@ -13,47 +13,55 @@
 
     <div class="wrapper">
 
+      <!-- MAIN PAGE HEADING -->
       <header>
         <h1>Password Generator</h1>
       </header>
 
       <form class="card" id="pwGenForm">
 
+        <!-- INNER PROMPT HEADING -->
         <div class="card-header">
           <h2>Generate a Password</h2>
         </div>
 
         <div class="card-body">
 
-          <textarea
-            readonly
-            id="password"
-            placeholder="Your Secure Password"
-            aria-label="Generated Password"
-          ></textarea>
+            <!-- GENERATED PASSWORD DISPLAY AREA -->
+            <textarea
+              readonly
+              id="password"
+              placeholder="Your Password Will Appear Here"
+              aria-label="Generated Password"
+            > Your Password Will Display Here
+            </textarea>
 
+          <!-- USER INPUT CHECKBOXES AND NUMBER FIELD -->
           <input type="checkbox" id="inclLower" name="inclLower" value="Bike">
-          <label for="vehicle1"> Include Lowercase</label><br>
+          <label class="inputLabel" for="vehicle1"> Include Lowercase</label><br>
 
           <input type="checkbox" id="inclUpper" name="inclUpper" value="Bike">
-          <label for="vehicle1"> Include Uppercase</label><br>
+          <label class="inputLabel" for="vehicle1"> Include Uppercase</label><br>
 
           <input type="checkbox" id="inclNumber" name="inclNumber" value="Car">
-          <label for="vehicle2"> Include Numbers</label><br>
+          <label class="inputLabel" for="vehicle2"> Include Numbers</label><br>
 
           <input type="checkbox" id="inclSpecial" name="inclSpecial" value="Boat">
-          <label for="vehicle3"> Include Special Characters</label><br>
+          <label class="inputLabel" for="vehicle3"> Include Special Characters</label><br>
 
-          <label for="length">Length / # of characters (min 8, max 128)</label>
-          <input type="number" id="charLength" name="length" min="8" max="128">
+          <label class="inputLabel" for="length">Password Length (min 8, max 128)</label>
+          <input type="number" class="numberBox" id="charLength" name="length" min="8" max="128">
 
         </div>
 
         <div class="card-footer">
+          
+          <!-- INVALID ENTRY MESSAGE -->
+          <h5 id="alert"></h5>
 
           <!-- GENERATE PASSWORD BUTTON -->
-          <button id="generate" class="btn">Generate Password</button>
-
+          <button type="submit" id="generate" class="btn">Generate Password</button>
+          
         </div>
       </form>
     </div>

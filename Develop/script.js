@@ -1,6 +1,3 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
 // Variable for Generate Password Button
 var generateBtn = document.querySelector("#generate");
 
@@ -32,6 +29,36 @@ var SpecialCharCodes = characterArray(33, 47).concat(
     characterArray(123, 126)
   )
 
+// Function to generate password characters
+function generatePassword(lower, upper, number, special, charAmt) {
+   
+  var charCodes = [];
+
+  //  Determine what kind of characters to include in charCodes array based on user input
+   if (lower) charCodes = charCodes.concat(LowerCharCodes);
+   if (upper) charCodes = charCodes.concat(UpperCharCodes);
+   if (number) charCodes = charCodes.concat(NumberCharCodes);
+   if (special) charCodes = charCodes.concat(SpecialCharCodes);
+
+   var passwordCharacters = [];
+   
+  //  FOR loop to concatenate all relevant ASCII character codes into passwordCharacter array
+  //  based on user input.
+   for (var i = 0; i < charAmt; i++) {
+    var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
+    passwordCharacters.push(String.fromCharCode(characterCode))
+   }
+   return passwordCharacters.join("")
+}
+
+// Functino to add ASCII character codes from a given sequential range to array
+function characterArray(first, last) {
+  var array = []
+  for (var i = first; i <= last; i++) {
+    array.push(i)
+  }
+  return array
+}
 
 // Write password to the #password input
 // function writePassword() {

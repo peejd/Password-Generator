@@ -29,12 +29,41 @@ var SpecialCharCodes = characterArray(33, 47).concat(
     characterArray(123, 126)
   )
 
+// Event listener for button submit 
+form.addEventListener("submit",  e => {
+  
+  // Prevent page reload
+  e.preventDefault();
+
+  // Set variables to user selections
+  var lower = inclLowerEl.checked;
+  var upper = inclUpperEl.checked;
+  var number = inclNumberEl.checked;
+  var special = inclSpecEl.checked;
+  var charAmt = charAmtEl.value;
+
+    // Throw error message if no checkbox is checked or if invalid character length is entered
+    if (((!lower) && (!upper) && (!number) && (!special)) || ((charAmt < 8) || (charAmt > 128))) {
+      var alertInvalid = "INVALID ENTRY! <br> You must include at least one character type and enter a Password Length value between 8 and 128."
+      passwordDisplay.innerText = "";
+      invalidAlert.innerHTML = alertInvalid;
+    }
+
+    // Otherwise, call generatePassword function and display resulting password on page
+    else {
+      var password = generatePassword(lower, upper, number, special, charAmt);
+      invalidAlert.innerText = "";
+      passwordDisplay.style.fontSize ="1.2rem";
+      passwordDisplay.innerText = password;
+    }
+})
+
 // Function to generate password characters
 function generatePassword(lower, upper, number, special, charAmt) {
    
   var charCodes = [];
 
-  //  Determine what kind of characters to include in charCodes array based on user input
+  //  Determine what kind of characters to concatenate into charCodes array based on user selections
    if (lower) charCodes = charCodes.concat(LowerCharCodes);
    if (upper) charCodes = charCodes.concat(UpperCharCodes);
    if (number) charCodes = charCodes.concat(NumberCharCodes);
@@ -42,8 +71,8 @@ function generatePassword(lower, upper, number, special, charAmt) {
 
    var passwordCharacters = [];
    
-  //  FOR loop to concatenate all relevant ASCII character codes into passwordCharacter array
-  //  based on user input.
+  //  FOR loop to spool random ASCII character codes into passwordCharacter array
+  //  based on user selections
    for (var i = 0; i < charAmt; i++) {
     var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
     passwordCharacters.push(String.fromCharCode(characterCode))
@@ -51,7 +80,7 @@ function generatePassword(lower, upper, number, special, charAmt) {
    return passwordCharacters.join("")
 }
 
-// Functino to add ASCII character codes from a given sequential range to array
+// Function to add ASCII character codes from a given sequential range to array
 function characterArray(first, last) {
   var array = []
   for (var i = first; i <= last; i++) {
@@ -60,14 +89,3 @@ function characterArray(first, last) {
   return array
 }
 
-// Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);

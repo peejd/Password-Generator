@@ -18,7 +18,7 @@ With this tool in this format, I feel I myself will find it useful for generatin
 
 To load and use this Password Generator, simply visit the following URL from any contemporary web browser connected to the internet:
 
-
+https://peejd.github.io/Password-Generator/
 
 
 ## Usage
